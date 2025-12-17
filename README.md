@@ -1,16 +1,270 @@
-# React + Vite
+# AssetTag Pro 🏷️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
 
-Currently, two official plugins are available:
+**专业资产标签生成与打印系统**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+一个现代化的、功能强大的资产标签批量生成工具，支持从 Excel 快速导入数据，自动生成条形码和二维码，并支持批量打印。
 
-## React Compiler
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ 核心特性
+
+### 🚀 快速导入
+- **一键粘贴**：直接从 Excel 复制数据（资产编码、名称、规格型号）
+- **智能识别**：自动解析 Tab 分隔的表格数据，无需手动格式化
+- **批量处理**：一次性导入多条资产数据，大幅提升工作效率
+
+### 📊 双码生成
+- **条形码 (CODE128)**：高精度线性条码，支持标准扫码枪识别
+- **二维码 (QR Code)**：兼容移动端扫码，容量更大，容错率更高
+- **实时预览**：即时查看生成效果，所见即所得
+
+### 🖨️ 打印优化
+- **一键打印**：优化的打印样式，自动隐藏非必要元素
+- **标准尺寸**：适配常见标签纸尺寸
+- **高清输出**：确保条码清晰可读
+
+### 💾 本地缓存
+- **数据持久化**：自动保存已导入数据，刷新页面不丢失
+- **快速恢复**：下次打开自动加载上次的工作状态
+- **安全可靠**：数据存储在本地 LocalStorage，隐私安全
+
+### 🎨 现代化界面
+- **响应式设计**：完美适配桌面、平板、手机等多种设备
+- **流畅动画**：精心设计的过渡效果，操作体验舒适
+- **键盘快捷键**：支持 `←` `→` 方向键快速切换标签
+- **直观反馈**：实时进度条 + 通知提示
+
+---
+
+## 📸 界面预览
+
+### 数据导入界面
+直观的输入提示，支持从 Excel 直接粘贴三列数据
+
+### 标签浏览模式
+双码并排显示，清晰展示资产信息，支持快速翻页和跳转
+
+### 打印预览
+优化的打印布局，确保标签清晰美观
+
+---
+
+## 🛠️ 技术栈
+
+| 技术 | 版本 | 用途 |
+|------|------|------|
+| **React** | 19.2 | 前端框架，组件化开发 |
+| **Vite** | 7.2 | 现代化构建工具，快速热更新 |
+| **TailwindCSS** | 3.4 | 实用优先的 CSS 框架 |
+| **Lucide React** | 0.561 | 精美的图标库 |
+| **JsBarcode** | 3.11 | 条形码生成库 |
+| **QRCode.js** | 1.5 | 二维码生成库 |
+
+---
+
+## 🚀 快速开始
+
+### 环境要求
+
+- **Node.js**: >= 18.0.0
+- **npm**: >= 9.0.0
+
+### 安装步骤
+
+1. **克隆项目**
+   ```bash
+   git clone https://github.com/ififi2017/asset-tag.git
+   cd asset-tag
+   ```
+
+2. **安装依赖**
+   ```bash
+   npm install
+   ```
+
+3. **启动开发服务器**
+   ```bash
+   npm run dev
+   ```
+
+4. **在浏览器中打开**
+   ```
+   http://localhost:5173
+   ```
+
+### 生产构建
+
+```bash
+# 构建生产版本
+npm run build
+
+# 预览构建结果
+npm run preview
+```
+
+构建产物将输出到 `dist` 目录，可直接部署到静态服务器。
+
+---
+
+## 📖 使用指南
+
+### 第一步：准备 Excel 数据
+
+在 Excel 中准备好资产数据，确保有以下三列（顺序必须一致）：
+
+| 资产编码 | 资产名称 | 规格型号 |
+|---------|---------|---------|
+| ZC40-SH-0004 | 16T机械硬盘 | 16T机械硬盘 NAS用 |
+| ZC34-SH-0240 | 10.2寸 IPAD 64G | 10.2寸 IPAD 64G |
+
+### 第二步：导入数据
+
+1. 在 Excel 中选中数据（含或不含表头均可）
+2. `Ctrl+C` 复制数据
+3. 在 AssetTag Pro 输入框中 `Ctrl+V` 粘贴
+4. 点击 **"开始识别生成"**
+
+### 第三步：浏览与打印
+
+- 使用 **← →** 方向键或底部按钮切换标签
+- 点击 **页码计数器** 可快速跳转到指定标签
+- 点击顶部 **打印图标** 或按 `Ctrl+P` 打印当前标签
+
+### 第四步：编辑与重置
+
+- 点击 **编辑图标**（铅笔）返回编辑模式修改数据
+- 点击 **重置图标**（旋转箭头）清空所有数据重新开始
+
+---
+
+## 🎯 应用场景
+
+- ✅ **企业资产管理**：办公设备、IT 资产批量贴标
+- ✅ **仓库库存管理**：物料、产品条码标签打印
+- ✅ **实验室设备**：仪器设备编号与追踪
+- ✅ **图书馆藏书**：书籍条码批量生成
+- ✅ **固定资产盘点**：年度盘点标签制作
+
+---
+
+## 📁 项目结构
+
+```
+asset-tag/
+├── public/              # 静态资源
+│   └── vite.svg        # 应用图标
+├── src/                # 源代码
+│   ├── App.jsx         # 主应用组件（核心逻辑）
+│   ├── main.jsx        # React 入口文件
+│   └── index.css       # 全局样式
+├── index.html          # HTML 模板
+├── package.json        # 项目依赖配置
+├── vite.config.js      # Vite 构建配置
+├── tailwind.config.js  # Tailwind CSS 配置
+├── eslint.config.js    # ESLint 代码规范配置
+├── postcss.config.js   # PostCSS 配置
+└── README.md           # 项目文档
+```
+
+---
+
+## 🔧 配置说明
+
+### 条形码配置
+
+在 `App.jsx` 中可调整条形码参数：
+
+```javascript
+window.JsBarcode(barcodeRef.current, currentCode, {
+  format: "CODE128",    // 条码格式
+  width: 2,             // 条宽度
+  height: 50,           // 条高度
+  displayValue: false,  // 是否显示文本
+  margin: 0,            // 边距
+  background: "#ffffff",// 背景色
+  lineColor: "#000000"  // 线条颜色
+});
+```
+
+### 二维码配置
+
+```javascript
+window.QRCode.toCanvas(qrRef.current, currentCode, {
+  width: 90,            // 二维码尺寸
+  margin: 0,            // 边距
+  color: {
+    dark: "#000000",    // 前景色
+    light: "#ffffff"    // 背景色
+  }
+});
+```
+
+---
+
+## 🤝 贡献指南
+
+欢迎提交 Issue 和 Pull Request！
+
+### 开发流程
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 提交 Pull Request
+
+### 代码规范
+
+项目使用 ESLint 进行代码检查：
+
+```bash
+npm run lint
+```
+
+---
+
+## 📝 许可证
+
+本项目基于 [MIT License](LICENSE) 开源协议。
+
+---
+
+## 💬 反馈与支持
+
+如果您在使用过程中遇到问题或有新功能建议，欢迎：
+
+- 📧 提交 [Issue](https://github.com/ififi2017/asset-tag/issues)
+- 💡 发起 [Discussions](https://github.com/ififi2017/asset-tag/discussions)
+
+---
+
+## 🌟 致谢
+
+感谢以下开源项目：
+
+- [React](https://react.dev/) - 用户界面库
+- [Vite](https://vitejs.dev/) - 下一代前端构建工具
+- [TailwindCSS](https://tailwindcss.com/) - CSS 框架
+- [JsBarcode](https://github.com/lindell/JsBarcode) - 条形码生成
+- [QRCode.js](https://github.com/soldair/node-qrcode) - 二维码生成
+- [Lucide](https://lucide.dev/) - 图标库
+- [Google Gemini](https://gemini.google.com/) - AI 模型支持
+
+---
+
+<div align="center">
+
+**Made with ❤️ by AssetTag Pro Team**
+
+如果这个项目对您有帮助，欢迎 Star ⭐ 支持！
+
+</div>
