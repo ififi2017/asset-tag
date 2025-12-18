@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="tagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded square -->
+  <rect width="128" height="128" rx="24" fill="url(#tagGradient)"/>
+  
+  <!-- Tag shape -->
+  <g transform="translate(32, 28)">
+    <!-- Main tag body -->
+    <path d="M 0 12 L 0 60 L 48 60 L 64 42 L 48 24 L 0 24 Z" fill="white" opacity="0.95"/>
+    
+    <!-- Tag hole -->
+    <circle cx="12" cy="42" r="4" fill="url(#tagGradient)"/>
+    
+    <!-- Barcode lines inside tag -->
+    <g transform="translate(20, 32)" opacity="0.8">
+      <rect x="0" y="0" width="2" height="20" fill="url(#tagGradient)"/>
+      <rect x="4" y="0" width="1" height="20" fill="url(#tagGradient)"/>
+      <rect x="7" y="0" width="3" height="20" fill="url(#tagGradient)"/>
+      <rect x="12" y="0" width="1" height="20" fill="url(#tagGradient)"/>
+      <rect x="15" y="0" width="2" height="20" fill="url(#tagGradient)"/>
+      <rect x="19" y="0" width="1" height="20" fill="url(#tagGradient)"/>
+      <rect x="22" y="0" width="2" height="20" fill="url(#tagGradient)"/>
+    </g>
+  </g>
+</svg>
